@@ -1104,10 +1104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  isControlable: 0
+  isControlable: 1
   interactable: {fileID: 0}
   facingDirection: 0
-  carryingCat: []
   speed: 2
   jumpForce: 5
   grounded: 0

@@ -25,10 +25,9 @@ public class CharacterControl : MonoBehaviour
     Animator myAnimator;
 
     [Header("General")]
-    public bool isControlable;
+    public bool isControlable = true;
     public GameObject interactable;
     public FacingDirection facingDirection;
-    public List<GameObject> carryingCat;
     [Header("Movement")]
     public float speed;
     
@@ -212,23 +211,6 @@ public class CharacterControl : MonoBehaviour
     // for configuring BoxCast
     private void OnDrawGizmos() {
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
-    }
-
-
-    public void AddCarryingCat(GameObject cat){
-        carryingCat.Add(cat);
-
-    }
-    public void EmptyCarringCats(){
-        foreach(GameObject cat in carryingCat){
-            Destroy(cat);
-        }
-        carryingCat.Clear();
-    }
-
-    public void LoseCat(GameObject cat){
-        carryingCat.Remove(cat);
-        Destroy(cat);
     }
 
     public void UpdateAnimator(){
