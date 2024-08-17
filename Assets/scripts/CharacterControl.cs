@@ -95,6 +95,7 @@ public class CharacterControl : MonoBehaviour
                 state = Playerstate.idle;
             }
         }else{
+            Debug.Log("moving" + moveInput.x);
             //walking animation
             facingDirection = moveInput.x > 0? FacingDirection.Right : FacingDirection.Left;
             if(isGrounded() && (state == Playerstate.falling || state == Playerstate.idle || state == Playerstate.dashing)){
@@ -175,12 +176,16 @@ public class CharacterControl : MonoBehaviour
         
     }
 
+    // bool isGrounded(){
+    //     if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer)){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
     bool isGrounded(){
-        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer)){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 
     void CheckInteraction(){
@@ -214,10 +219,16 @@ public class CharacterControl : MonoBehaviour
     }
 
     public void UpdateAnimator(){
+        // if(myRigidBody.velocity.x < 0){
+        //     transform.localScale = new (-0.4f, 0.4f, 0.4f);
+        // }else if(myRigidBody.velocity.x > 0){
+        //     transform.localScale = new (0.4f, 0.4f, 0.4f);
+        // }
+
         if(myRigidBody.velocity.x < 0){
-            transform.localScale = new (-0.4f, 0.4f, 0.4f);
+            transform.localScale = new Vector3(-1,1,1);
         }else if(myRigidBody.velocity.x > 0){
-            transform.localScale = new (0.4f, 0.4f, 0.4f);
+            transform.localScale = Vector3.one;
         }
 
         myAnimator.SetBool("IsIdle", state == Playerstate.idle);
