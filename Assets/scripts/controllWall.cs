@@ -33,6 +33,7 @@ public class controllWall : MonoBehaviour
     RigidbodyConstraints2D[] originalConstraintsArray;
 
     public GameObject wallInstance;
+    public static GameObject currentlySelectedWall = null; 
 
     bool boxInRange;
     //use for get camera pos
@@ -89,11 +90,11 @@ public class controllWall : MonoBehaviour
     }
 
     private void controlingWall(){
-        if (controlMode){
+        if (controlMode ){
             //this fix player moving
             targetRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
             
-            if (insideWall() && wallInstance == gameObject){
+            if (insideWall() && wallInstance == gameObject && currentlySelectedWall == gameObject){
                 Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
                 transform.position = new Vector3(mousePosition.x, mousePosition.y, lockedZPosition);
@@ -109,12 +110,11 @@ public class controllWall : MonoBehaviour
         }
     }
 
-    private bool insideWall(){
+    private bool insideWall() {
         Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePos.x > transform.position.x-size.x/2 && mousePos.x<transform.position.x+size.x/2
-        && mousePos.y < transform.position.y+size.y/2 && mousePos.y>transform.position.y-size.y/2
-        //&& Toggle
-        ) {
+        float buffer = 0.01f; // Small buffer to handle precision issues
+        if (mousePos.x > transform.position.x - size.x / 2 - buffer && mousePos.x < transform.position.x + size.x / 2 + buffer
+            && mousePos.y < transform.position.y + size.y / 2 + buffer && mousePos.y > transform.position.y - size.y / 2 - buffer) {
             return true;
         }
         return false;
@@ -123,13 +123,17 @@ public class controllWall : MonoBehaviour
     private void toggleMove(){
         if (Input.GetKeyDown(KeyCode.Mouse0)){
         //    Toggle = !Toggle;
-           wallInstance = this.gameObject;
+        if (insideWall()){
+        currentlySelectedWall = gameObject;
+        wallInstance = this.gameObject;
+        }
         }
     }
 
     private void toggleFreeToMove(){
         if (Input.GetKeyUp(KeyCode.Mouse0)){
             wallInstance=null;
+            currentlySelectedWall = null;
         }
     }
 

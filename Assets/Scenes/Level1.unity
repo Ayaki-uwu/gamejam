@@ -542,10 +542,12 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
+  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
   - {fileID: 2130526277}
+  wallInstance: {fileID: 0}
   mainCamera: {fileID: 1702533254}
 --- !u!1 &828075271
 GameObject:
@@ -724,10 +726,12 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
+  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
   - {fileID: 2130526277}
+  wallInstance: {fileID: 0}
   mainCamera: {fileID: 1702533254}
 --- !u!1 &994409454
 GameObject:
@@ -1121,10 +1125,12 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
+  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
   - {fileID: 2130526277}
+  wallInstance: {fileID: 0}
   mainCamera: {fileID: 1702533254}
 --- !u!1 &1311364958
 GameObject:
@@ -1154,7 +1160,7 @@ Transform:
   m_GameObject: {fileID: 1311364958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 9.02, y: 0.06, z: 0}
+  m_LocalPosition: {x: 9, y: 0, z: 0}
   m_LocalScale: {x: 11, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1272,10 +1278,12 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
+  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
   - {fileID: 2130526277}
+  wallInstance: {fileID: 0}
   mainCamera: {fileID: 1702533254}
 --- !u!1 &1375182667
 GameObject:
