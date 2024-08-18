@@ -8,6 +8,8 @@ TagManager:
   - targetbox
   - nontargetbox
   - wallcollider
+  - box
+  - goal
   layers:
   - Default
   - TransparentFX
