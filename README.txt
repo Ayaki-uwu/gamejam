@@ -1,5 +1,3 @@
-# gamejam
-first game jam
 to-do list:
 
 longlo: more level (1-2 stage) (but how )
