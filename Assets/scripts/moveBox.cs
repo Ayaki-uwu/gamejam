@@ -15,17 +15,18 @@ public class moveBox : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("wallcollider") || other.CompareTag("nontargetbox")
-        ||other.CompareTag("targetbox") ){
+        if (other.CompareTag("nontargetbox")){
             Debug.Log("Toucs wall");
             boxInRange = true;
             // boxRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
-    // private void OnTriggerExit2D(Collider2D other){
-    //     if (!other.CompareTag("wallcollider")){
-    //         boxRigidBody.constraints = originalConstraints;
-    //     }
-    // }
+    private void OnTriggerExit2D(Collider2D other){
+        if (other.CompareTag("nontargetbox") ){
+        Debug.Log("Leaves wall");
+        boxInRange = false;
+        }
+         // boxRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+    }
 }

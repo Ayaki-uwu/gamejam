@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class controlBox : MonoBehaviour
 {
-    private SpriteRenderer renderer;
+    private SpriteRenderer Renderer;
     public Vector3 size;
 
     private Rigidbody2D myRigidBody;
@@ -17,8 +17,8 @@ public class controlBox : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
-        size = renderer.bounds.size;
+        Renderer = GetComponent<SpriteRenderer>();
+        size = Renderer.bounds.size;
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class controlBox : MonoBehaviour
 
     private void controlingBoxSize (){
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (insideBox() &&(renderer.CompareTag("targetbox") || renderer.CompareTag("nontargetbox"))){
+        if (insideBox() &&(Renderer.CompareTag("targetbox") || Renderer.CompareTag("nontargetbox"))){
             if (transform.localScale.x<0 && transform.localScale.y<0){
                 transform.localScale = Vector3.one;
             }
