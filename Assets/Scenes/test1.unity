@@ -363,7 +363,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody: []
   wallInstance: {fileID: 0}
@@ -739,7 +738,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
@@ -781,9 +779,10 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
-  boxRigidBody: []
+  boxRigidBody:
+  - {fileID: 1588970754}
+  - {fileID: 2130526277}
   wallInstance: {fileID: 0}
   mainCamera: {fileID: 1702533254}
 --- !u!61 &555190997
@@ -1009,7 +1008,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody: []
   wallInstance: {fileID: 0}
@@ -1317,7 +1315,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
@@ -1716,7 +1713,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
@@ -1869,7 +1865,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody:
   - {fileID: 1588970754}
@@ -2444,7 +2439,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody: []
   wallInstance: {fileID: 0}
@@ -2755,6 +2749,7 @@ MonoBehaviour:
   playerControl: 0
   controlMode: 0
   mainCamera: {fileID: 1702533254}
+  wallcontroller: []
 --- !u!50 &1588970754
 Rigidbody2D:
   serializedVersion: 4
@@ -3152,7 +3147,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody: []
   wallInstance: {fileID: 0}
@@ -3382,7 +3376,6 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
   boxRigidBody: []
   wallInstance: {fileID: 0}
@@ -3736,9 +3729,10 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   Toggle: 0
   controlMode: 0
-  isControling: 0
   targetRigidbody: {fileID: 1375182670}
-  boxRigidBody: []
+  boxRigidBody:
+  - {fileID: 1588970754}
+  - {fileID: 2130526277}
   wallInstance: {fileID: 0}
   mainCamera: {fileID: 1702533254}
 --- !u!1 &2130526272
@@ -3890,6 +3884,7 @@ MonoBehaviour:
   playerControl: 0
   controlMode: 0
   mainCamera: {fileID: 1702533254}
+  wallcontroller: []
 --- !u!50 &2130526277
 Rigidbody2D:
   serializedVersion: 4
@@ -3928,8 +3923,8 @@ SceneRoots:
   - {fileID: 1497295090}
   - {fileID: 1531098198}
   - {fileID: 298581981}
+  - {fileID: 216731195}
   - {fileID: 1977203326}
   - {fileID: 555191000}
   - {fileID: 917290549}
   - {fileID: 1788384699}
-  - {fileID: 216731195}
