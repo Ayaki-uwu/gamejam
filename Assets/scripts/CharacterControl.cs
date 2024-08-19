@@ -198,7 +198,10 @@ public class CharacterControl : MonoBehaviour
         else if (interactable != null && scroll <0f){
             interactable.transform.localScale += new Vector3(-0.03f,-0.03f,0);
         }
-        else if (interactable != null && interactable.transform.localScale.x<0 && interactable.transform.localScale.y<0){
+        else if (interactable != null && interactable.transform.localScale.x<0.2 && interactable.transform.localScale.y<0.2){
+                interactable.transform.localScale = Vector3.one;
+            }
+        else if (interactable != null && interactable.transform.localScale.x>1.5 && interactable.transform.localScale.y>1.5){
                 interactable.transform.localScale = Vector3.one;
             }
     }    

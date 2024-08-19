@@ -66,7 +66,7 @@ public class controllWall : MonoBehaviour
     void Update()
     {
         mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        SetcontrolModes();
+        // SetcontrolModes();
 
         if (wallInstance == null){
             toggleMove();
@@ -127,10 +127,10 @@ public class controllWall : MonoBehaviour
         }
     }
 
-    private void SetcontrolModes (){
-        if (Input.GetKeyDown(KeyCode.LeftAlt)){
-           controlMode = !controlMode;
-        }
-    }
+    // private void SetcontrolModes (){
+    //     if (Input.GetKeyDown(KeyCode.LeftAlt)){
+    //        controlMode = !controlMode;
+    //     }
+    // }
 
 }

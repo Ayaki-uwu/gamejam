@@ -23,6 +23,8 @@ public class controlBox : MonoBehaviour
     [SerializeField]
     private Camera mainCamera;
     // Start is called before the first frame update
+    [SerializeField]
+    private controllWall[] wallcontroller;
 
     void Start()
     {
@@ -58,6 +60,12 @@ public class controlBox : MonoBehaviour
     private void SetcontrolModes (){
         if (Input.GetKeyDown(KeyCode.LeftAlt)){
            controlMode = !controlMode;
+           foreach (controllWall walls in wallcontroller){
+            if (walls != null)
+        {
+            walls.controlMode = controlMode;
+        }
+           }
         }
     }
 
@@ -78,7 +86,11 @@ public class controlBox : MonoBehaviour
     //      // boxRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
 
     // }
-        private void OnTriggerEnter2D(Collider2D other)
+
+    private void YouWin(){
+        
+    }
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("wallcollider"))
         {
@@ -88,13 +100,28 @@ public class controlBox : MonoBehaviour
                 Debug.Log("at left");
                 leftBlockingWall = other;  // Wall is on the left
                 controlMode = !controlMode;
+                foreach (controllWall walls in wallcontroller){
+                    if (walls != null)
+                    {
+                        walls.controlMode = controlMode;
+                    }
+                }
             }
             else if (other.transform.position.x < transform.position.x)
             {
                 Debug.Log("at right");
                 rightBlockingWall = other; // Wall is on the right
                 controlMode = !controlMode;
+                foreach (controllWall walls in wallcontroller){
+                    if (walls != null)
+                    {
+                    walls.controlMode = controlMode;
+                    }
+                }
             }
+        }
+        if(other.CompareTag("goal")){
+            YouWin();
         }
     }
 
