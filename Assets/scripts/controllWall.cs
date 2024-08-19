@@ -8,6 +8,9 @@ public class controllWall : MonoBehaviour
     private SpriteRenderer Renderer;
     //the size of the outside wall
     public Vector3 size;
+    //lock x y z coords of wall
+    private float lockedXPosition;
+    private float lockedYPosition;
     private float lockedZPosition;
     private float oriXpos;
     private float oriYpos;
@@ -56,6 +59,8 @@ public class controllWall : MonoBehaviour
         size = Renderer.bounds.size;
         oriXpos = transform.localPosition.x;
         oriYpos = transform.localPosition.y;
+        lockedXPosition = transform.position.x;
+        lockedYPosition = transform.position.y;
         lockedZPosition = transform.position.z;
     }
 
@@ -90,14 +95,17 @@ public class controllWall : MonoBehaviour
     }
 
     private void controlingWall(){
-        if (controlMode ){
+        if (controlMode){
             //this fix player moving
             targetRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
             
             if (insideWall() && wallInstance == gameObject && currentlySelectedWall == gameObject){
                 Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-                transform.position = new Vector3(mousePosition.x, mousePosition.y, lockedZPosition);
+                if (CompareTag("horizontal wall")){
+                    transform.position = new Vector3(mousePosition.x, lockedYPosition, lockedZPosition);}
+                    else if (CompareTag("vertical wall")){
+                        transform.position = new Vector3(lockedXPosition, mousePosition.y, lockedZPosition);
+                    }
             
             }
         }

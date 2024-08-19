@@ -10,6 +10,8 @@ TagManager:
   - wallcollider
   - box
   - goal
+  - vertical wall
+  - horizontal wall
   layers:
   - Default
   - TransparentFX
