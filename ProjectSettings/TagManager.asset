@@ -12,6 +12,7 @@ TagManager:
   - goal
   - vertical wall
   - horizontal wall
+  - Trap_wall
   layers:
   - Default
   - TransparentFX
