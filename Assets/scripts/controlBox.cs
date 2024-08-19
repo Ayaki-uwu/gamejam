@@ -10,6 +10,7 @@ public class controlBox : MonoBehaviour
     private SpriteRenderer Renderer;
     public Vector3 size;
 
+    public GameObject trapWall;
     private Rigidbody2D myRigidBody;
     RigidbodyConstraints2D originalConstraints;
 
@@ -87,9 +88,6 @@ public class controlBox : MonoBehaviour
 
     // }
 
-    private void YouWin(){
-        
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("wallcollider"))
@@ -120,8 +118,9 @@ public class controlBox : MonoBehaviour
                 }
             }
         }
-        if(other.CompareTag("goal")){
-            YouWin();
+
+        if (other.CompareTag("TriggerButton")){
+            trapWall.SetActive(false);
         }
     }
 
