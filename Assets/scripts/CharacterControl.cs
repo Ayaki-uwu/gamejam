@@ -198,6 +198,9 @@ public class CharacterControl : MonoBehaviour
         else if (interactable != null && scroll <0f){
             interactable.transform.localScale += new Vector3(-0.03f,-0.03f,0);
         }
+        else if (interactable != null && interactable.transform.localScale.x<0 && interactable.transform.localScale.y<0){
+                interactable.transform.localScale = Vector3.one;
+            }
     }    
 
     // void CheckFire(){

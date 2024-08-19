@@ -21,9 +21,6 @@ public class controllWall : MonoBehaviour
     //getin to wall controlmode
     public bool controlMode = false;
 
-    //test is controlling wall
-    public int isControling = 0;
-
     //player instance
     public Rigidbody2D targetRigidbody;
 
@@ -59,7 +56,7 @@ public class controllWall : MonoBehaviour
         size = Renderer.bounds.size;
         oriXpos = transform.localPosition.x;
         oriYpos = transform.localPosition.y;
-        
+
         lockedXPosition = transform.position.x;
         lockedYPosition = transform.position.y;
         lockedZPosition = transform.position.z;
