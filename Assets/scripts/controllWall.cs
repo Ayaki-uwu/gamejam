@@ -59,6 +59,7 @@ public class controllWall : MonoBehaviour
         size = Renderer.bounds.size;
         oriXpos = transform.localPosition.x;
         oriYpos = transform.localPosition.y;
+        
         lockedXPosition = transform.position.x;
         lockedYPosition = transform.position.y;
         lockedZPosition = transform.position.z;
@@ -69,22 +70,6 @@ public class controllWall : MonoBehaviour
     {
         mainCamera.ScreenToWorldPoint(Input.mousePosition);
         SetcontrolModes();
-
-        // setBoxMove();
-        if (boxInRange){
-            //unlock Y pos, X pos is freeze
-           for (int i = 0; i < boxRigidBody.Length; i++)
-            {
-                boxRigidBody[i].constraints = originalConstraintsArray[i];
-            }
-        }
-        else{
-            //only freeze box rotation
-            foreach (Rigidbody2D boxRigidBody in boxRigidBody)
-            {
-                boxRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
-        }
 
         if (wallInstance == null){
             toggleMove();
@@ -151,19 +136,4 @@ public class controllWall : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("wallcollider")){
-            Debug.Log("Toucs wall");
-            boxInRange = true;
-            // boxRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other){
-        if (other.CompareTag("wallcollider")){
-        Debug.Log("Leaves wall");
-        boxInRange = false;
-        }
-         // boxRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-    }
 }

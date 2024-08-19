@@ -189,9 +189,14 @@ public class CharacterControl : MonoBehaviour
     }
 
     void CheckInteraction(){
-        if(interactable != null && Input.GetKeyDown(KeyCode.UpArrow)){
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if(interactable != null && scroll >0f){
             // Debug.Log("interact with "+ interactable.name);
             // interactable.transform.parent.GetComponent<Interactable>().Interact(carryingCat.Count);
+            interactable.transform.localScale += new Vector3(0.03f,0.03f,0);
+        }
+        else if (interactable != null && scroll <0f){
+            interactable.transform.localScale += new Vector3(-0.03f,-0.03f,0);
         }
     }    
 
@@ -202,12 +207,12 @@ public class CharacterControl : MonoBehaviour
     // }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Interactable")){
+        if(other.CompareTag("targetbox")||other.CompareTag("nontargetbox")){
             interactable = other.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.CompareTag("Interactable")){
+        if(other.CompareTag("targetbox")||other.CompareTag("nontargetbox")){
             interactable = null;
         }
     }
