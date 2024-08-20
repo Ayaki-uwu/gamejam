@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class controlBox : MonoBehaviour
 {
@@ -11,8 +12,13 @@ public class controlBox : MonoBehaviour
     public Vector3 size;
 
     public GameObject trapWall;
+    public GameObject nonpressButton;
+    public GameObject pressedButton;
+    public GameObject lockedSign;
     private Rigidbody2D myRigidBody;
     RigidbodyConstraints2D originalConstraints;
+
+    Vector3 pos;
 
     public bool boxInRange;
     public bool playerControl;
@@ -33,11 +39,17 @@ public class controlBox : MonoBehaviour
         Renderer = GetComponent<SpriteRenderer>();
         size = Renderer.bounds.size;
         originalConstraints=myRigidBody.constraints;
+        pos=transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < -5)
+        {
+        RestartScene(); // Call the restart method
+        }
+
         mainCamera.ScreenToWorldPoint(Input.mousePosition);
         SetcontrolModes();
 
@@ -49,15 +61,21 @@ public class controlBox : MonoBehaviour
             
         }
         else if (controlMode){
+            lockedSign.SetActive(true);
             //only freeze box rotation -> which means X and Y are free
             myRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         else {
+            lockedSign.SetActive(false);
             myRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
         }
     }
 
-
+        private void RestartScene()
+        {
+            Scene currentScene = SceneManager.GetActiveScene(); // Get the current scene
+            SceneManager.LoadScene(currentScene.name); // Reload the scene by its name
+        }
     private void SetcontrolModes (){
         if (Input.GetKeyDown(KeyCode.LeftAlt)){
            controlMode = !controlMode;
@@ -69,24 +87,6 @@ public class controlBox : MonoBehaviour
            }
         }
     }
-
-    // private void OnTriggerEnter2D(Collider2D other){
-    //     if (other.CompareTag("wallcollider")){
-    //         Debug.Log("Toucs wall");
-    //         boxInRange = true;
-    //         // boxRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-    //     }
-
-    // }
-
-    // private void OnTriggerExit2D(Collider2D other){
-    //     if (other.CompareTag("wallcollider")){
-    //         Debug.Log("Leaves wall");
-    //         boxInRange = false;
-    //     }
-    //      // boxRigidBody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-
-    // }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -121,6 +121,8 @@ public class controlBox : MonoBehaviour
 
         if (other.CompareTag("TriggerButton")){
             trapWall.SetActive(false);
+            pressedButton.SetActive(true);
+            nonpressButton.SetActive(false);
         }
     }
 

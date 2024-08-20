@@ -45,6 +45,7 @@ public class CharacterControl : MonoBehaviour
     // public bool canDoubleJump;
     public float jumpTime;
     bool jumped;
+    private bool isGroundedState;
 
     // [Header("Dash")]
     // public bool isDashed;
@@ -130,33 +131,6 @@ public class CharacterControl : MonoBehaviour
         }
         
     }
-    // void CheckDoubleJump(){
-    //     if(canDoubleJump && !isGrounded() && Input.GetButtonDown("Jump")){
-    //         canDoubleJump = false;
-    //         myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, doubleJumpForce);
-    //         state = Playerstate.jumping;
-    //     }
-    // }
-
-    // void CheckDash(){
-    //     if(Input.GetKeyDown(KeyCode.Z) && !isDashed){
-    //         isDashed = true;
-    //         myRigidBody.velocity = new Vector2((facingDirection == FacingDirection.Right? 1 : -1) * dashSpeed, 0);
-    //         isControlable = false;
-    //         myRigidBody.gravityScale = 0;
-    //         state = Playerstate.dashing;
-    //         DOVirtual.DelayedCall(dashDuration, ()=>{
-    //             isControlable = true;
-    //             myRigidBody.gravityScale = downwardGravity;
-    //             state = Playerstate.idle;
-    //             DOVirtual.DelayedCall(dashCooldown, ()=>{
-    //                 isDashed = false;
-    //             });
-    //         });
-            
-            
-    //     }
-    // }
 
     void UpdateGravity(){
         if(!isGrounded()){
@@ -176,18 +150,10 @@ public class CharacterControl : MonoBehaviour
         
     }
 
-    // bool isGrounded(){
-    //     if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer)){
-    //         return true;
-    //     }else{
-    //         return false;
-    //     }
-    // }
-
-    bool isGrounded(){
-        return true;
+    bool isGrounded()
+    {
+        return !isGroundedState;
     }
-
     void CheckInteraction(){
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if(interactable != null && scroll >0f){
@@ -216,18 +182,24 @@ public class CharacterControl : MonoBehaviour
         if(other.CompareTag("targetbox")||other.CompareTag("nontargetbox")){
             interactable = other.gameObject;
         }
+        // if (other.gameObject.layer == LayerMask.NameToLayer("groundLayer")){
+        //     isGroundedState=true;
+        // }
     }
     private void OnTriggerExit2D(Collider2D other) {
         if(other.CompareTag("targetbox")||other.CompareTag("nontargetbox")){
             interactable = null;
         }
+        // if (other.gameObject.layer == LayerMask.NameToLayer("groundLayer")){
+        //     isGroundedState=false;
+        // }
     }
 
 
     // for configuring BoxCast
-    private void OnDrawGizmos() {
-        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
-    }
+    // private void OnDrawGizmos() {
+    //     Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+    // }
 
     public void UpdateAnimator(){
         // if(myRigidBody.velocity.x < 0){
